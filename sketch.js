@@ -19,9 +19,12 @@ function setup() {
   h = height / rows;
   kw = width / kcols;
   kh = height / krows;
-
   noStroke();
+  generate(); 
+}
 
+function generate() {
+  // generate grid
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       push();
@@ -33,7 +36,7 @@ function setup() {
       pop();
     }
   }
-
+// generate krills
   for (let y = 0; y < krows; y++) {
     for (let x = 0; x < kcols; x++) {
       push();
@@ -41,10 +44,9 @@ function setup() {
         x * kw + kw / 2 + random(-5, 5),
         y * kh + kh / 2 + random(-5, 5)
       );
-      let rn = random(1); 
+      let rn = random(1);
       if (rn > 0.7) {
         // only draw krill for half the grid
-
         rotate(random(rangles)); // start at random position
         let r = random(angles); // randomize between half krill and 3 quarters krill
         fill(232, 100, 100);
@@ -59,15 +61,17 @@ function setup() {
           fill(0);
           ellipse(0.35 * ksize, 0.35 * ksize, 8, 8);
         }
-      } else if (rn>0.5) {
+      } else if (rn > 0.5) {
         // draw green stuff
-        fill(40, random(100,200), 7);
-        rotate(random(180)); 
-        rect(0, 0, random(8, 12), random(15,22));
+        fill(40, random(100, 200), 7);
+        rotate(random(180));
+        rect(0, 0, random(8, 12), random(15, 22));
       }
       pop();
     }
   }
 }
-
-function draw() {}
+function mousePressed() {
+  background(255); 
+  generate();
+}
